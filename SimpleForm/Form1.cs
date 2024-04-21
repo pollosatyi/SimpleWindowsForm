@@ -19,15 +19,15 @@ namespace SimpleForm
             nudResolution.Enabled = false;
             nudDensity.Enabled = false;
             resolution = (int)nudResolution.Value;
-            rows = pictureBox1.Height / resolution; 
-            cols = pictureBox1.Width/resolution;
+            rows = pictureBox1.Height / resolution;
+            cols = pictureBox1.Width / resolution;
             field = new bool[cols, rows];
             Random random = new Random();
             for (int x = 0; x < cols; x++)
             {
                 for (int y = 0; y < rows; y++)
                 {
-                    field[x, y] = random.Next((int)nudDensity.Value)==0;
+                    field[x, y] = random.Next((int)nudDensity.Value) == 0;
 
                 }
             }
@@ -42,26 +42,29 @@ namespace SimpleForm
 
             var newField = new bool[cols, rows];
 
-            for(int x = 0; x < cols; x++)
+            for (int x = 0; x < cols; x++)
             {
-                for(int y = 0;y < rows; y++)
+                for (int y = 0; y < rows; y++)
                 {
-                    var neighboursCount=CountNeighbours(x,y);
-                    var haslife = field[x,y];
-                    if(!haslife && neighboursCount==3)
-                    {
+                    var neighboursCount = CountNeighbours(x, y);
+                    var haslife = field[x, y];
+                    if (!haslife && neighboursCount == 3)
                         newField[x, y] = true;
-                    }
+                    else if (haslife && (neighboursCount > 3 || neighboursCount < 2))
+                        newField[x, y] = false;
+                    else
+                        newField[x, y] = field[x, y];
+
 
                     if (haslife)
-                    {
-                        graphics.FillRectangle(Brushes.Crimson,x*resolution,y*resolution,resolution,resolution);
-                    }
+                        graphics.FillRectangle(Brushes.Crimson, x * resolution, y * resolution, resolution, resolution);
+                    
                 }
             }
+            field = newField;
             pictureBox1.Refresh();
         }
-        
+
         private int CountNeighbours(int x, int y)
         {
             return 0;
