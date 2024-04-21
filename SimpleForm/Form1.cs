@@ -39,11 +39,21 @@ namespace SimpleForm
         private void NextGeneration()
         {
             graphics.Clear(Color.Black);
+
+            var newField = new bool[cols, rows];
+
             for(int x = 0; x < cols; x++)
             {
                 for(int y = 0;y < rows; y++)
                 {
-                    if (field[x, y])
+                    var neighboursCount=CountNeighbours(x,y);
+                    var haslife = field[x,y];
+                    if(!haslife && neighboursCount==3)
+                    {
+                        newField[x, y] = true;
+                    }
+
+                    if (haslife)
                     {
                         graphics.FillRectangle(Brushes.Crimson,x*resolution,y*resolution,resolution,resolution);
                     }
@@ -52,21 +62,30 @@ namespace SimpleForm
             pictureBox1.Refresh();
         }
         
+        private int CountNeighbours(int x, int y)
+        {
+            return 0;
+        }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
             NextGeneration();
         }
-
+        private void StopGame()
+        {
+            if (!timer1.Enabled) return;
+            timer1.Stop();
+            nudResolution.Enabled = true;
+            nudDensity.Enabled = true;
+        }
         private void bStart_Click(object sender, EventArgs e)
         {
             StartGame();
-            graphics.FillRectangle(Brushes.Crimson,0,0,resolution,resolution);
         }
 
         private void bStop_Click(object sender, EventArgs e)
         {
-
+            StopGame();
         }
 
         private void label2_Click(object sender, EventArgs e)
