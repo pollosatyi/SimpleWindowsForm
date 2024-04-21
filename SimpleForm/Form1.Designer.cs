@@ -126,7 +126,7 @@
             nudResolution.Location = new Point(13, 68);
             nudResolution.Margin = new Padding(4, 5, 4, 5);
             nudResolution.Maximum = new decimal(new int[] { 25, 0, 0, 0 });
-            nudResolution.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            nudResolution.Minimum = new decimal(new int[] { 2, 0, 0, 0 });
             nudResolution.Name = "nudResolution";
             nudResolution.Size = new Size(171, 31);
             nudResolution.TabIndex = 2;
