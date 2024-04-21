@@ -3,6 +3,7 @@ namespace SimpleForm
 {
     public partial class Form1 : Form
     {
+        private int currentGeneration = 0;
         private Graphics graphics;
         private int resolution;
         private bool[,] field;
@@ -16,6 +17,8 @@ namespace SimpleForm
         private void StartGame()
         {
             if (timer1.Enabled) return;
+            currentGeneration = 0;
+            Text = $"Generation {currentGeneration}";
             nudResolution.Enabled = false;
             nudDensity.Enabled = false;
             resolution = (int)nudResolution.Value;
@@ -58,16 +61,32 @@ namespace SimpleForm
 
                     if (haslife)
                         graphics.FillRectangle(Brushes.Crimson, x * resolution, y * resolution, resolution, resolution);
-                    
+
                 }
             }
             field = newField;
             pictureBox1.Refresh();
+            Text = $"Generation {++currentGeneration}";
         }
 
         private int CountNeighbours(int x, int y)
         {
-            return 0;
+            int count = 0;
+            for (int i = -1; i < 2; i++)
+            {
+                for (int j = -1; j < 2; j++)
+                {
+                    var col = (x + i + cols) % cols;
+                    var row = (y + j + rows) % rows;
+                    var isSelfChecking = col == x && row == y;
+                    var hasLife = field[col, row];
+                    if (hasLife && !isSelfChecking)
+                        count++;
+
+
+                }
+            }
+            return count;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
