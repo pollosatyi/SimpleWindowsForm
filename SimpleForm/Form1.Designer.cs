@@ -28,12 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             splitContainer1 = new SplitContainer();
             pictureBox1 = new PictureBox();
             label1 = new Label();
             nudResolution = new NumericUpDown();
             nudDensity = new NumericUpDown();
             label2 = new Label();
+            bStart = new Button();
+            bStop = new Button();
+            timer1 = new System.Windows.Forms.Timer(components);
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -54,6 +58,8 @@
             // 
             // splitContainer1.Panel1
             // 
+            splitContainer1.Panel1.Controls.Add(bStop);
+            splitContainer1.Panel1.Controls.Add(bStart);
             splitContainer1.Panel1.Controls.Add(nudDensity);
             splitContainer1.Panel1.Controls.Add(label2);
             splitContainer1.Panel1.Controls.Add(nudResolution);
@@ -88,18 +94,23 @@
             // nudResolution
             // 
             nudResolution.Location = new Point(9, 41);
+            nudResolution.Maximum = new decimal(new int[] { 25, 0, 0, 0 });
+            nudResolution.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudResolution.Name = "nudResolution";
             nudResolution.Size = new Size(120, 23);
             nudResolution.TabIndex = 2;
             nudResolution.TextAlign = HorizontalAlignment.Right;
+            nudResolution.Value = new decimal(new int[] { 3, 0, 0, 0 });
             // 
             // nudDensity
             // 
             nudDensity.Location = new Point(10, 108);
+            nudDensity.Minimum = new decimal(new int[] { 2, 0, 0, 0 });
             nudDensity.Name = "nudDensity";
             nudDensity.Size = new Size(120, 23);
             nudDensity.TabIndex = 4;
             nudDensity.TextAlign = HorizontalAlignment.Right;
+            nudDensity.Value = new decimal(new int[] { 2, 0, 0, 0 });
             // 
             // label2
             // 
@@ -111,6 +122,33 @@
             label2.TabIndex = 3;
             label2.Text = "Density";
             label2.Click += label2_Click;
+            // 
+            // bStart
+            // 
+            bStart.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
+            bStart.Location = new Point(11, 144);
+            bStart.Name = "bStart";
+            bStart.Size = new Size(116, 52);
+            bStart.TabIndex = 5;
+            bStart.Text = "Start";
+            bStart.UseVisualStyleBackColor = true;
+            bStart.Click += bStart_Click;
+            // 
+            // bStop
+            // 
+            bStop.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
+            bStop.Location = new Point(11, 202);
+            bStop.Name = "bStop";
+            bStop.Size = new Size(116, 46);
+            bStop.TabIndex = 6;
+            bStop.Text = "Stop";
+            bStop.UseVisualStyleBackColor = true;
+            bStop.Click += bStop_Click;
+            // 
+            // timer1
+            // 
+            timer1.Interval = 40;
+            timer1.Tick += timer1_Tick;
             // 
             // Form1
             // 
@@ -139,5 +177,8 @@
         private Label label1;
         private NumericUpDown nudDensity;
         private Label label2;
+        private Button bStop;
+        private Button bStart;
+        private System.Windows.Forms.Timer timer1;
     }
 }
