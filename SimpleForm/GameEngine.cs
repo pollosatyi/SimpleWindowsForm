@@ -15,10 +15,11 @@ namespace SimpleForm
         private bool[,] field;
         private readonly int cols;
         private readonly int rows;
-        private Random random = new Random();
+        
 
         public GameEngine(int rows, int cols, int density)
         {
+            Random random = new Random();
             this.cols = cols;
             this.rows = rows;
             field = new bool[cols, rows];
@@ -94,5 +95,24 @@ namespace SimpleForm
             return count;
         }
 
+        private bool ValidateCellPosition(int x, int y)
+        {
+            return x >= 0 && y >= 0 && x < cols && y < rows;
+        }
+
+        private void UpdateCell(int x, int y,bool state)
+        {
+            if(ValidateCellPosition(x, y))
+                field[x, y] = state;
+        }
+
+        public void AddCell(int x, int y)
+        {
+            UpdateCell(x, y, state:true);
+        }
+        public void RemoveCell(int x, int y)
+        {
+            UpdateCell(x, y, state:false);
+        }
     }
 }

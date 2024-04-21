@@ -102,12 +102,13 @@
             // 
             nudDensity.Location = new Point(14, 180);
             nudDensity.Margin = new Padding(4, 5, 4, 5);
+            nudDensity.Maximum = new decimal(new int[] { 25, 0, 0, 0 });
             nudDensity.Minimum = new decimal(new int[] { 2, 0, 0, 0 });
             nudDensity.Name = "nudDensity";
             nudDensity.Size = new Size(171, 31);
             nudDensity.TabIndex = 4;
             nudDensity.TextAlign = HorizontalAlignment.Right;
-            nudDensity.Value = new decimal(new int[] { 2, 0, 0, 0 });
+            nudDensity.Value = new decimal(new int[] { 25, 0, 0, 0 });
             // 
             // label2
             // 
@@ -168,8 +169,7 @@
             Controls.Add(splitContainer1);
             Margin = new Padding(4, 5, 4, 5);
             Name = "Form1";
-            Text = "Form1";
-            Load += Form1_Load;
+            Text = "GameOfLife";
             splitContainer1.Panel1.ResumeLayout(false);
             splitContainer1.Panel1.PerformLayout();
             splitContainer1.Panel2.ResumeLayout(false);
